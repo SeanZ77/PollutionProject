@@ -34,4 +34,10 @@ public class CameraControls : MonoBehaviour
             lastPosition = Input.mousePosition;
         }
     }
+
+    public void Testing() 
+    {
+        print("testing function");
+    }
+
 }
