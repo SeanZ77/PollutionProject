@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 86b97fa601363c64bbbfb41b9e01d740, type: 3}
+  m_Name: Plastics
+  m_EditorClassIdentifier: 
+  name: Plastics
+  description: "Plastic items are the most common type of marine debris. They come
+    from synthetic compounds and are designed to last a long time, so they don\u2019t
+    degrade like other materials."
+  image: {fileID: 21300000, guid: 989b8221ff65e2e46af67345e7369b19, type: 3}
+  color: {r: 0, g: 1, b: 0.103140354, a: 1}

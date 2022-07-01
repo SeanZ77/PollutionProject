@@ -139,7 +139,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &86467505
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -152,21 +152,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e99ee62e9a2a31b42aa8aaae57590b05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  marker: {fileID: 679601859174272515, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+  marker: {fileID: 4598163228873973113, guid: 3a459dc3fe0a4ae4691b5819d375bab8, type: 3}
   map: {fileID: 1682087338}
   points:
-  - {x: 0, y: 0}
-  - {x: 24.4, y: -14.8}
-  - {x: 33.9, y: 11.15}
-  - {x: 31.8, y: 25.9}
-  - {x: 16.5, y: 39.9}
-  - {x: -6.45, y: 41.01}
-  - {x: -30.21, y: 18.5}
-  - {x: 4.4, y: 12.6}
-  - {x: 82.8, y: -48.62}
-  - {x: 83.54, y: -28.95}
-  - {x: -84.03, y: 38.62}
-  - {x: -84.06, y: -153.69}
+  - debris: {fileID: 11400000, guid: 14a749e2eb18bea479a47ea93eb60d2d, type: 2}
+    location: {x: 0, y: 0}
+  - debris: {fileID: 11400000, guid: a1fb2e79bef9bd5419341d0cc8285deb, type: 2}
+    location: {x: 46.43, y: -123}
+  - debris: {fileID: 11400000, guid: b82db90b1ff4f02428f64bd6841bc1d9, type: 2}
+    location: {x: 26.27, y: -112}
+  - debris: {fileID: 11400000, guid: f1cc6dd3e41f7bf44a6e3a70a73a0a52, type: 2}
+    location: {x: 10.6, y: -85}
+  - debris: {fileID: 11400000, guid: 14a749e2eb18bea479a47ea93eb60d2d, type: 2}
+    location: {x: 0, y: -71}
+  - debris: {fileID: 11400000, guid: 14a749e2eb18bea479a47ea93eb60d2d, type: 2}
+    location: {x: 89.62, y: -106}
 --- !u!4 &86467506
 Transform:
   m_ObjectHideFlags: 0
@@ -1126,6 +1126,66 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &807439164
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 807439166}
+  - component: {fileID: 807439165}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &807439165
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807439164}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ddc305222140b4c8ce2b623b44e809, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marker: {fileID: 4598163228873973113, guid: 3a459dc3fe0a4ae4691b5819d375bab8, type: 3}
+  map: {fileID: 1682087338}
+  spawnAmount: 2000
+  csvFile: {fileID: 4900000, guid: 86e2671502dfeb24290c9733ad6c697e, type: 3}
+  positions: []
+  locations: []
+  materials: []
+  info: []
+  placeholder: {fileID: 11400000, guid: eba144163d3f1884fbb571cb393d2048, type: 2}
+  boatParts: {fileID: 11400000, guid: a1fb2e79bef9bd5419341d0cc8285deb, type: 2}
+  plastic: {fileID: 11400000, guid: 14a749e2eb18bea479a47ea93eb60d2d, type: 2}
+  microPlastics: {fileID: 11400000, guid: b82db90b1ff4f02428f64bd6841bc1d9, type: 2}
+  fishingGear: {fileID: 11400000, guid: f1cc6dd3e41f7bf44a6e3a70a73a0a52, type: 2}
+  glass: {fileID: 11400000, guid: e9a6e4aa9bec8a543b0d0bae33bd8192, type: 2}
+  cloth: {fileID: 11400000, guid: 40afa703198f6ef40b3cfdc4e0c0e897, type: 2}
+  rubber: {fileID: 11400000, guid: 8f8d3652db6867d4e8629320d409cc9b, type: 2}
+  metal: {fileID: 11400000, guid: 0757597a41d0a5d47997101761830043, type: 2}
+--- !u!4 &807439166
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807439164}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.6782327, y: 2.3341718, z: 578.52496}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 15
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1009392823
 GameObject:
   m_ObjectHideFlags: 0
@@ -1298,6 +1358,57 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1248845731
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1248845733}
+  - component: {fileID: 1248845732}
+  m_Layer: 0
+  m_Name: VolunteerLocations
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1248845732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248845731}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1306edeaefa930c4e9c51454b5ba7b00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  marker: {fileID: 3521789681156291710, guid: 55f0736e17a549c4dac0d471147cd34f, type: 3}
+  map: {fileID: 1682087338}
+  locations:
+  - {fileID: 11400000, guid: 36091885de30e24469155a5271e0b7ef, type: 2}
+  - {fileID: 11400000, guid: ae1c0518989e0bd4da6c1036e88300ae, type: 2}
+  - {fileID: 11400000, guid: 0c6584ccf85b7094c8eef395deb9c13c, type: 2}
+  - {fileID: 11400000, guid: c0e1c1e805a0afb45be23dc23c209f9c, type: 2}
+  - {fileID: 11400000, guid: 4dbe7212601fa584385d081a485b58dc, type: 2}
+--- !u!4 &1248845733
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1248845731}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.4788578, y: 3.4573033, z: 733.8456}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1276184686
 GameObject:
@@ -1982,7 +2093,7 @@ GameObject:
   - component: {fileID: 1682087338}
   - component: {fileID: 1682087337}
   m_Layer: 0
-  m_Name: Square
+  m_Name: Map
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
