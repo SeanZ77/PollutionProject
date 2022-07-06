@@ -7,6 +7,7 @@ using UnityEngine;
 public class Debris : ScriptableObject
 {
     public string name;
+    public string dataName;
     public string description;
     public Sprite image;
     public Color color;

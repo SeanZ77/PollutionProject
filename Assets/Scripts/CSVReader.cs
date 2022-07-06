@@ -11,37 +11,25 @@ public class CSVReader : SpawnsMarkers
     public List<string> materials = new List<string>();
     public List<Debris> info = new List<Debris>();
     public Dictionary<string, Debris> debrisLookup = new Dictionary<string, Debris>();
-
+    public Dictionary<string, List<GameObject>> allDebris = new Dictionary<string, List<GameObject>>();
+    public ToggleChoice debris;
     public Debris placeholder;
-    public Debris boatParts;
-    public Debris plastic;
-    public Debris microPlastics;
-    public Debris fishingGear;
-    public Debris glass;
-    public Debris cloth;
-    public Debris rubber;
-    public Debris metal;
-    
+
     void Awake()
     {
-        debrisLookup.Add("BOAT PARTS", boatParts);
-        debrisLookup.Add("PLASTIC", plastic);
-        debrisLookup.Add("MICROPLASTICS", microPlastics);
-        debrisLookup.Add("FISHING GEAR", fishingGear);
-        debrisLookup.Add("GLASS", glass);
-        debrisLookup.Add("CLOTH", cloth);
-        debrisLookup.Add("RUBBER", rubber);
-        debrisLookup.Add("METAL", metal);
+        foreach (Debris d in debris.types) {
+            debrisLookup.Add(d.dataName, d);
+            allDebris.Add(d.name, new List<GameObject>());
+        }
     }
 
     void Start()
     {
         string[] allLines = csvFile.text.Split("\n"[0]);
-        print(allLines.Length);
         List<string> lines = new List<string>();
-        for (int i = 1; i < spawnAmount+1; i++) {
-            print(allLines[i]);
-            lines.Add(allLines[i]);
+        for (int i = 0; i < spawnAmount; i++) {
+            int index = Random.Range(1, spawnAmount+1);
+            lines.Add(allLines[index]);
         }
         List<DebrisItem> points = new List<DebrisItem>();
         foreach (string line in lines) {
@@ -50,9 +38,10 @@ public class CSVReader : SpawnsMarkers
             float longitude = float.Parse(data[10]);
             positions.Add(new Vector2(latitude, longitude));
             locations.Add(data[11]);
-            materials.Add(data[2]);
-            info.Add(getDebrisType(data[2]));
-            points.Add(new DebrisItem(getDebrisType(data[2]), new Vector2(latitude, longitude)));
+            string material = data[2];
+            materials.Add(material);
+            info.Add(getDebrisType(material));
+            points.Add(new DebrisItem(getDebrisType(material), new Vector2(latitude, longitude)));
         }
 
         foreach (DebrisItem p in points)
@@ -64,8 +53,29 @@ public class CSVReader : SpawnsMarkers
                 mInfo.description = p.debris.description;
                 mInfo.image = p.debris.image;
                 mInfo.ChangeMarker(p.debris.color);
+                allDebris[p.debris.name].Add(marker);
             }
         }
+    }
+
+    private void Update()
+    {
+        if (debris.previousChoice.Equals(debris.choice)) {
+            return;
+        }
+        print(debris.choice);
+        foreach (KeyValuePair<string, List<GameObject>> objs in allDebris)
+        {
+            foreach (GameObject o in objs.Value)
+            {
+                o.SetActive(false);
+            }
+        }
+        List<GameObject> objects = allDebris[debris.choice];
+        foreach (GameObject o in objects) {
+            o.SetActive(false);
+        }
+        debris.previousChoice = debris.choice;
     }
 
     Debris getDebrisType(string key) {

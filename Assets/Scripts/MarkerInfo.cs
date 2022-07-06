@@ -16,7 +16,6 @@ public class MarkerInfo : MonoBehaviour
     protected virtual void Awake()
     {
         defaultScale = transform.localScale;
-        print(defaultScale);
     }
 
     private void Update()
@@ -24,7 +23,6 @@ public class MarkerInfo : MonoBehaviour
         if (Camera.main.orthographicSize < shrinkThreshold)
         {
             transform.localScale = defaultScale * Camera.main.orthographicSize / shrinkThreshold;
-            print(transform.localScale);
         }
         else
             transform.localScale = defaultScale;

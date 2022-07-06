@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Cloth
   m_EditorClassIdentifier: 
   name: Cloth
+  dataName: CLOTH
   description: Worthless material from the production process of textile products
   image: {fileID: 21300000, guid: 179d91328c0e4094181097687a0f99d8, type: 3}
   color: {r: 1, g: 0.5906892, b: 0.41037738, a: 1}

@@ -12,7 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 86b97fa601363c64bbbfb41b9e01d740, type: 3}
   m_Name: FishingGear
   m_EditorClassIdentifier: 
-  name: FISHING GEAR
+  name: Fishing Gear
+  dataName: FISHING GEAR
   description: Lost and/or discarded fishing gear that can trap and kill marine life
   image: {fileID: 21300000, guid: bd33fbf62c7f11b4a872d3353ceed369, type: 3}
   color: {r: 0.5283019, g: 0.20150426, b: 0, a: 1}

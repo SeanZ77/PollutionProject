@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Plastics
   m_EditorClassIdentifier: 
   name: Plastics
+  dataName: PLASTICS
   description: "Plastic items are the most common type of marine debris. They come
     from synthetic compounds and are designed to last a long time, so they don\u2019t
     degrade like other materials."

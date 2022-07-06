@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Placeholder
   m_EditorClassIdentifier: 
   name: Placeholder
+  dataName: OTHER ITEMS
   description: description
   image: {fileID: -2413806693520163455, guid: ba586b13f4ee2c54a9b015fbc234cb11, type: 3}
   color: {r: 1, g: 0, b: 0, a: 1}
