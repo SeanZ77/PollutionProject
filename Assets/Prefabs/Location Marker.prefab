@@ -538,6 +538,10 @@ PrefabInstance:
       value: 7.45
       objectReference: {fileID: 0}
     - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 3e518a3ff7ce54e47b419d85c6b335c1, type: 3}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -623,9 +627,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 0
   latitude: 0
+  shrinkThreshold: 1
   lat_text: {fileID: 3747150990556557084}
   long_text: {fileID: 3769639447310228327}
   displayCanvas: {fileID: 6518413700978406318}
+  defaultScale: {x: 0, y: 0, z: 0}
   name: 
   description: 
   website: 

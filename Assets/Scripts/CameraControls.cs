@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class CameraControls : MonoBehaviour
 {
@@ -11,6 +12,9 @@ public class CameraControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //Return if not over game object
+        if (EventSystem.current.IsPointerOverGameObject(-1)) return;
+
         //Moving Camera
         Vector2 input = new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
         transform.Translate(input * cameraMoveSpeed * Time.deltaTime);

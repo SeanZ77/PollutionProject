@@ -9,16 +9,9 @@ public class DebrisChoice : MonoBehaviour
     public Debris debris;
     public ToggleChoice tc;
     public TextMeshProUGUI text;
-    private Toggle toggle;
 
     public delegate void DebrisRefresh();
     public static event DebrisRefresh OnChoiceChanged;
-
-    private void Awake()
-    {
-        toggle = GetComponent<Toggle>();
-        toggle.onValueChanged.AddListener(AddDebris); 
-    }
 
     public void AddDebris(bool selected) {
         if (selected)
