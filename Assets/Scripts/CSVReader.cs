@@ -15,8 +15,12 @@ public class CSVReader : SpawnsMarkers
     public ToggleChoice debris;
     public Debris placeholder;
 
+
     void Awake()
     {
+        //"subscribing" to an event
+        DebrisChoice.OnChoiceChanged += RefreshDebris;
+
         foreach (Debris d in debris.types) {
             debrisLookup.Add(d.dataName, d);
             allDebris.Add(d.name, new List<GameObject>());
@@ -52,17 +56,14 @@ public class CSVReader : SpawnsMarkers
                 mInfo.name = p.debris.name;
                 mInfo.description = p.debris.description;
                 mInfo.image = p.debris.image;
-                mInfo.ChangeMarker(p.debris.color);
+                mInfo.ChangeMarker(p.debris.color, p.debris.icon);
                 allDebris[p.debris.name].Add(marker);
             }
         }
     }
 
-    private void Update()
+    private void RefreshDebris()
     {
-        if (debris.previousChoice.Equals(debris.choice)) {
-            return;
-        }
         print(debris.choice);
         foreach (KeyValuePair<string, List<GameObject>> objs in allDebris)
         {
@@ -71,11 +72,14 @@ public class CSVReader : SpawnsMarkers
                 o.SetActive(false);
             }
         }
-        List<GameObject> objects = allDebris[debris.choice];
-        foreach (GameObject o in objects) {
-            o.SetActive(false);
+        List<GameObject> objects = new List<GameObject>();
+        foreach (string name in debris.choice) {
+            List<GameObject> o = allDebris[name];
+            objects.AddRange(o);
         }
-        debris.previousChoice = debris.choice;
+        foreach (GameObject o in objects) {
+            o.SetActive(true);
+        }
     }
 
     Debris getDebrisType(string key) {

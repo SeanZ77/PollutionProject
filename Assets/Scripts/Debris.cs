@@ -10,5 +10,6 @@ public class Debris : ScriptableObject
     public string dataName;
     public string description;
     public Sprite image;
+    public Sprite icon;
     public Color color;
 }

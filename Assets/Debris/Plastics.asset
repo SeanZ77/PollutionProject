@@ -18,4 +18,5 @@ MonoBehaviour:
     from synthetic compounds and are designed to last a long time, so they don\u2019t
     degrade like other materials."
   image: {fileID: 21300000, guid: 989b8221ff65e2e46af67345e7369b19, type: 3}
+  icon: {fileID: 21300000, guid: 6798c3c600df2cf458098a8ef6acb11f, type: 3}
   color: {r: 0, g: 1, b: 0.103140354, a: 1}

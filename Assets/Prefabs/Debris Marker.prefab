@@ -848,8 +848,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   longitude: 0
   latitude: 0
-  magnifier: 0.25
-  shrinkThreshold: 5
+  shrinkThreshold: 2
   lat_text: {fileID: 4256062101625196059}
   long_text: {fileID: 4269534547005602400}
   displayCanvas: {fileID: 6153626487626158761}

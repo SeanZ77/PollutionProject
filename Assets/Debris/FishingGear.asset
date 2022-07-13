@@ -16,4 +16,5 @@ MonoBehaviour:
   dataName: FISHING GEAR
   description: Lost and/or discarded fishing gear that can trap and kill marine life
   image: {fileID: 21300000, guid: bd33fbf62c7f11b4a872d3353ceed369, type: 3}
+  icon: {fileID: 21300000, guid: 07badb533a2b7344391481e1e919c11a, type: 3}
   color: {r: 0.5283019, g: 0.20150426, b: 0, a: 1}

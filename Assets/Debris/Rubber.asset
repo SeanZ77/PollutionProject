@@ -16,4 +16,5 @@ MonoBehaviour:
   dataName: RUBBER
   description: 'Discarded rubber '
   image: {fileID: 21300000, guid: a244fe5d6259fa346a191f2a4d24ba2b, type: 3}
+  icon: {fileID: 21300000, guid: af81351efc000cb4788f3f580e88f789, type: 3}
   color: {r: 0, g: 0, b: 0, a: 1}

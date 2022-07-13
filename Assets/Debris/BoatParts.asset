@@ -17,4 +17,5 @@ MonoBehaviour:
   description: Abandoned vessels that can block navigational channels and damage
     ecosystems
   image: {fileID: 21300000, guid: 03997e5f31dfbd345acc39ceacaf5008, type: 3}
+  icon: {fileID: 21300000, guid: 865d579be11399d46821eca4e1c79989, type: 3}
   color: {r: 1, g: 0.43259233, b: 0, a: 1}

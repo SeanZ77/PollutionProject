@@ -33,7 +33,8 @@ public class DebrisMarkerData : MarkerInfo
         img.sprite = image;
     }
 
-    public void ChangeMarker(Color color) {
-        spriteRenderer.color = color;   
+    public void ChangeMarker(Color color, Sprite sprite) {
+        spriteRenderer.color = color;
+        spriteRenderer.sprite = sprite;
     }
 }

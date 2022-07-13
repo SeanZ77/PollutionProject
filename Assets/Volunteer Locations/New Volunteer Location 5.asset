@@ -9,7 +9,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3f507cf9aa596bb4389eb3cb54735481, type: 3}
-  m_Name: New Country Data
+  m_Script: {fileID: 11500000, guid: 50cc4e300d6610641b7d035ab8ee4b97, type: 3}
+  m_Name: New Volunteer Location 5
   m_EditorClassIdentifier: 
-  currentCountry: 
+  name: Pacific Discovery
+  description: Gap year semester and summer programs
+  website: https://www.pacificdiscovery.org/
+  location: {x: -45.01225, y: 168.75514}
