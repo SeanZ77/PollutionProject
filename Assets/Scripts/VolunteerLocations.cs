@@ -10,27 +10,35 @@ public class VolunteerLocations : SpawnsMarkers
 
     void Start()
     {
+        //break down CSV file
         string[] allLines = csvFile.text.Split("\n"[0]);
+        print(allLines.Length);
         List<string> lines = new List<string>();
-        for (int i = 0; i < lines.Count; i++)
+        for (int i = 1; i < allLines.Length; i++)
         {
             lines.Add(allLines[i]);
         }
+
+        //collect info from file
         foreach (string line in lines)
         {
+            print(line);
             string[] data = line.Split(',');
+            print(data[3]);
+            print(data[4]);
             float latitude = float.Parse(data[3]);
             float longitude = float.Parse(data[4]);
 
             vols.Add(new VolunteerLocation(data[0], data[1], data[2], new Vector2(latitude, longitude)));
         }
 
+        //based on info, make a marker and supply appropriate information
         foreach (VolunteerLocation vL in vols) {
             GameObject m = SpawnMarker(vL.location);
             markers.Add(m);
             if (m.TryGetComponent(out VolunteerMarkerInfo mInfo))
             {
-                mInfo.name = name;
+                mInfo.name = vL.name;
                 mInfo.description = vL.description;
                 mInfo.website = vL.website;
             }
