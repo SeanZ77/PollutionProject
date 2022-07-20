@@ -4,19 +4,35 @@ using UnityEngine;
 
 public class VolunteerLocations : SpawnsMarkers
 {
-    public VolunteerLocation[] locations;
+    public List<VolunteerLocation> vols = new List<VolunteerLocation>();
     public List<GameObject> markers = new List<GameObject>();
+    public TextAsset csvFile;
 
     void Start()
     {
-        foreach (VolunteerLocation vl in locations) {
-            GameObject m = SpawnMarker(vl.location);
+        string[] allLines = csvFile.text.Split("\n"[0]);
+        List<string> lines = new List<string>();
+        for (int i = 0; i < lines.Count; i++)
+        {
+            lines.Add(allLines[i]);
+        }
+        foreach (string line in lines)
+        {
+            string[] data = line.Split(',');
+            float latitude = float.Parse(data[3]);
+            float longitude = float.Parse(data[4]);
+
+            vols.Add(new VolunteerLocation(data[0], data[1], data[2], new Vector2(latitude, longitude)));
+        }
+
+        foreach (VolunteerLocation vL in vols) {
+            GameObject m = SpawnMarker(vL.location);
             markers.Add(m);
             if (m.TryGetComponent(out VolunteerMarkerInfo mInfo))
             {
-                mInfo.name = vl.name;
-                mInfo.description = vl.description;
-                mInfo.website = vl.website;
+                mInfo.name = name;
+                mInfo.description = vL.description;
+                mInfo.website = vL.website;
             }
         }
     }

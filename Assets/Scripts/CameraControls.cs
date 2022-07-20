@@ -29,10 +29,10 @@ public class CameraControls : MonoBehaviour
         }
         //Panning
         Camera.main.orthographicSize = Mathf.Clamp(Camera.main.orthographicSize, 1, 10);
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(1)) {
             lastPosition = Input.mousePosition;
         }
-        if (Input.GetMouseButton(0)) {
+        if (Input.GetMouseButton(1)) {
             Vector2 distance = Input.mousePosition - (Vector3)lastPosition;
             transform.Translate(-distance * cameraMoveSpeed * Time.deltaTime);
             lastPosition = Input.mousePosition;

@@ -14,6 +14,7 @@ public class CSVReader : SpawnsMarkers
     public Dictionary<string, List<GameObject>> allDebris = new Dictionary<string, List<GameObject>>();
     public ToggleChoice debris;
     public Debris placeholder;
+    public DebrisInScene debrisInScene;
 
 
     void Awake()
@@ -60,6 +61,13 @@ public class CSVReader : SpawnsMarkers
                 allDebris[p.debris.name].Add(marker);
             }
         }
+
+        foreach (Debris debris in debris.types) {
+            print(debris.name);
+            int length = allDebris[debris.name].Count;
+            debrisInScene.data[debris] = length;
+        }
+
     }
 
     private void RefreshDebris()

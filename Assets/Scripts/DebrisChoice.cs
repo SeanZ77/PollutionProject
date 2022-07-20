@@ -9,6 +9,7 @@ public class DebrisChoice : MonoBehaviour
     public Debris debris;
     public ToggleChoice tc;
     public TextMeshProUGUI text;
+    public TextMeshProUGUI count;
 
     public delegate void DebrisRefresh();
     public static event DebrisRefresh OnChoiceChanged;

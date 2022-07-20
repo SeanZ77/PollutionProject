@@ -7,6 +7,7 @@ public class ToggleMenu : MonoBehaviour
     public GameObject toggle;
     public Debris[] debris;
     public ToggleChoice tc;
+    public DebrisInScene debrisInScene;
 
     private void Awake()
     {
@@ -22,6 +23,7 @@ public class ToggleMenu : MonoBehaviour
             dC.text.text = d.name;
             dC.tc = tc;
             dC.AddDebris(true);
+            dC.count.text = debrisInScene.data[d].ToString();
         }
     }
 }
