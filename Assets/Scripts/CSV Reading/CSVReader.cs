@@ -10,12 +10,12 @@ public class CSVReader : SpawnsMarkers
     public List<string> locations = new List<string>();
     public List<string> materials = new List<string>();
     public List<Debris> info = new List<Debris>();
-    public Dictionary<string, Debris> debrisLookup = new Dictionary<string, Debris>();
+    public Dictionary<string, Debris> dataNameLookup = new Dictionary<string, Debris>();
+    public Dictionary<string, Debris> presentationNameLookup = new Dictionary<string, Debris>();
     public Dictionary<string, List<GameObject>> allDebris = new Dictionary<string, List<GameObject>>();
     public ToggleChoice debris;
     public Debris placeholder;
     public DebrisInScene debrisInScene;
-
 
     void Awake()
     {
@@ -23,7 +23,8 @@ public class CSVReader : SpawnsMarkers
         DebrisChoice.OnChoiceChanged += RefreshDebris;
 
         foreach (Debris d in debris.types) {
-            debrisLookup.Add(d.dataName, d);
+            dataNameLookup.Add(d.dataName, d);
+            presentationNameLookup.Add(d.name, d);
             allDebris.Add(d.name, new List<GameObject>());
         }
     }
@@ -45,8 +46,8 @@ public class CSVReader : SpawnsMarkers
             locations.Add(data[11]);
             string material = data[2];
             materials.Add(material);
-            info.Add(getDebrisType(material));
-            points.Add(new DebrisItem(getDebrisType(material), new Vector2(latitude, longitude)));
+            info.Add(getDebrisTypeFromDataName(material));
+            points.Add(new DebrisItem(getDebrisTypeFromDataName(material), new Vector2(latitude, longitude)));
         }
 
         foreach (DebrisItem p in points)
@@ -63,7 +64,6 @@ public class CSVReader : SpawnsMarkers
         }
 
         foreach (Debris debris in debris.types) {
-            print(debris.name);
             int length = allDebris[debris.name].Count;
             debrisInScene.data[debris] = length;
         }
@@ -75,6 +75,9 @@ public class CSVReader : SpawnsMarkers
         print(debris.choice);
         foreach (KeyValuePair<string, List<GameObject>> objs in allDebris)
         {
+            print(objs.Key);
+            print(objs.Value.Count);
+            debrisInScene.data[getDebrisTypeFromPresentationName(objs.Key)] -= objs.Value.Count;
             foreach (GameObject o in objs.Value)
             {
                 o.SetActive(false);
@@ -83,6 +86,7 @@ public class CSVReader : SpawnsMarkers
         List<GameObject> objects = new List<GameObject>();
         foreach (string name in debris.choice) {
             List<GameObject> o = allDebris[name];
+            
             objects.AddRange(o);
         }
         foreach (GameObject o in objects) {
@@ -90,13 +94,26 @@ public class CSVReader : SpawnsMarkers
         }
     }
 
-    Debris getDebrisType(string key) {
+    Debris getDebrisTypeFromDataName(string key) {
         Debris value;
-        if (debrisLookup.TryGetValue(key, out value))
+        if (dataNameLookup.TryGetValue(key, out value))
         {
             return value;
         }
         else {
+            return placeholder;
+        }
+    }
+
+    Debris getDebrisTypeFromPresentationName(string key)
+    {
+        Debris value;
+        if (presentationNameLookup.TryGetValue(key, out value))
+        {
+            return value;
+        }
+        else
+        {
             return placeholder;
         }
     }
