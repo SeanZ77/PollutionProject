@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VolunteerLocations : SpawnsMarkers
 {
-    public List<VolunteerLocation> vols = new List<VolunteerLocation>();
     public List<GameObject> markers = new List<GameObject>();
     public TextAsset csvFile;
 
@@ -28,21 +27,24 @@ public class VolunteerLocations : SpawnsMarkers
             print(data[4]);
             float latitude = float.Parse(data[3]);
             float longitude = float.Parse(data[4]);
+            SpawnMarker(new Vector2(latitude, longitude), new Volunteer(data[0], data[1], data[2]));
+        }
+    }
 
-            vols.Add(new VolunteerLocation(data[0], data[1], data[2], new Vector2(latitude, longitude)));
+    public GameObject SpawnMarker(Vector2 l, Volunteer v)
+    {
+        GameObject m = Instantiate(marker, LongLat2XY(l.y, -l.x), Quaternion.identity);
+
+        if (marker.TryGetComponent(out VolunteerMarkerInfo mInfo))
+        {
+            mInfo.latitudeText.text = l.y.ToString();
+            mInfo.longitudeText.text = l.x.ToString();
+            mInfo.nameText.text = v.name;
+            mInfo.descriptionText.text = v.description;
+            mInfo.websiteText.text = v.website;
         }
 
-        //based on info, make a marker and supply appropriate information
-        foreach (VolunteerLocation vL in vols) {
-            GameObject m = SpawnMarker(vL.location);
-            markers.Add(m);
-            if (m.TryGetComponent(out VolunteerMarkerInfo mInfo))
-            {
-                mInfo.name = vL.name;
-                mInfo.description = vL.description;
-                mInfo.website = vL.website;
-            }
-        }
+        return m;
     }
 
     public void ToggleLocations(bool enabled) {

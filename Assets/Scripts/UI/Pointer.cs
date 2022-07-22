@@ -47,8 +47,8 @@ public class Pointer : SpawnsMarkers
         
         if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo)) {
             mInfo.name = choice.debris.name;
-            mInfo.description = choice.debris.description;
-            mInfo.image = choice.debris.image;
+            mInfo.descriptionText.text = choice.debris.description;
+            mInfo.img.sprite = choice.debris.image;
             mInfo.ChangeMarker(choice.debris.color, choice.debris.icon);
         }
     }

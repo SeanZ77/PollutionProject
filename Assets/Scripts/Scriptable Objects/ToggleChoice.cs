@@ -6,7 +6,6 @@ using UnityEngine;
 [CreateAssetMenu]
 public class ToggleChoice : ScriptableObject, ISerializationCallbackReceiver
 {
-    public Debris[] types;
     public List<string> choice = new List<string>();
 
     //clears out choices after simulation ends

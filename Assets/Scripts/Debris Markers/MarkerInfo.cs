@@ -5,11 +5,9 @@ using TMPro;
 
 public class MarkerInfo : MonoBehaviour
 {
-    public float longitude;
-    public float latitude;
     public int shrinkThreshold = 3;
-    public TextMeshProUGUI lat_text;
-    public TextMeshProUGUI long_text;
+    public TextMeshProUGUI latitudeText;
+    public TextMeshProUGUI longitudeText;
     public GameObject displayCanvas;
     public Vector3 defaultScale;
 
@@ -17,6 +15,11 @@ public class MarkerInfo : MonoBehaviour
     {
         defaultScale = transform.localScale;
     }
+
+    void Start()
+    {
+        displayCanvas.SetActive(false);     
+    }    
 
     private void Update()
     {
@@ -31,8 +34,6 @@ public class MarkerInfo : MonoBehaviour
     public virtual void OnMouseEnter()
     {
         displayCanvas.SetActive(true);
-        lat_text.text = latitude.ToString();
-        long_text.text = longitude.ToString();
     }
 
     public void OnMouseExit()

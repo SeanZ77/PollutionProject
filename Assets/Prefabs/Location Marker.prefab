@@ -473,6 +473,10 @@ PrefabInstance:
       propertyPath: m_fontColor32.rgba
       value: 4278190080
       objectReference: {fileID: 0}
+    - target: {fileID: 1834107301146752025, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Name
+      value: Latitude
+      objectReference: {fileID: 0}
     - target: {fileID: 4544340843468498167, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_SizeDelta.x
       value: 923
@@ -524,6 +528,10 @@ PrefabInstance:
     - target: {fileID: 5543113929889669110, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5611800412663655013, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Name
+      value: Longitude
       objectReference: {fileID: 0}
     - target: {fileID: 5766999594848950680, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_LocalScale.x
@@ -625,16 +633,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b2ff8b2cd2cd064888053c8ca48814f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  longitude: 0
-  latitude: 0
   shrinkThreshold: 1
-  lat_text: {fileID: 3747150990556557084}
-  long_text: {fileID: 3769639447310228327}
+  latitudeText: {fileID: 3747150990556557084}
+  longitudeText: {fileID: 3769639447310228327}
   displayCanvas: {fileID: 6518413700978406318}
   defaultScale: {x: 0, y: 0, z: 0}
-  name: 
-  description: 
-  website: 
   nameText: {fileID: 2913433374707367701}
   descriptionText: {fileID: 1831323816698811265}
   websiteText: {fileID: 5883028136740094773}

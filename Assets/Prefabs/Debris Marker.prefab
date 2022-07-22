@@ -199,7 +199,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -467,7 +467,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: New Text
+  m_text: 
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -601,7 +601,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 7482667652216324306, guid: 8dc150a52d87e5e44bf9e3b39d2f464e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -638,6 +638,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Debris Marker
       objectReference: {fileID: 0}
+    - target: {fileID: 679601859174272515, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 986581600065264993, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_text
+      value: 
+      objectReference: {fileID: 0}
     - target: {fileID: 986581600065264993, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_fontSize
       value: 72
@@ -661,6 +669,10 @@ PrefabInstance:
     - target: {fileID: 986581600065264993, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_fontColor32.rgba
       value: 4278190080
+      objectReference: {fileID: 0}
+    - target: {fileID: 1000349280408054042, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_text
+      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 1000349280408054042, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_fontSize
@@ -778,6 +790,26 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.y
       value: 8.618
       objectReference: {fileID: 0}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: -2413806693520163455, guid: ba586b13f4ee2c54a9b015fbc234cb11, type: 3}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Color.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Color.g
+      value: 0.009896724
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_Color.r
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+      propertyPath: m_WasSpriteAssigned
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7181837406504770692, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
       propertyPath: m_SizeDelta.x
       value: 481.81
@@ -800,6 +832,11 @@ PrefabInstance:
 --- !u!1 &4598163228873973113 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 679601859174272515, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
+  m_PrefabInstance: {fileID: 3936598327810642810}
+  m_PrefabAsset: {fileID: 0}
+--- !u!212 &7516615815076937889 stripped
+SpriteRenderer:
+  m_CorrespondingSourceObject: {fileID: 6841523156775228379, guid: f5e07ee3a311fb34197d9274692b4a44, type: 3}
   m_PrefabInstance: {fileID: 3936598327810642810}
   m_PrefabAsset: {fileID: 0}
 --- !u!1 &6153626487626158761 stripped
@@ -846,16 +883,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a73dca3dadbf3a8438c0b12d1510b0fe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  longitude: 0
-  latitude: 0
   shrinkThreshold: 1
-  lat_text: {fileID: 4256062101625196059}
-  long_text: {fileID: 4269534547005602400}
+  latitudeText: {fileID: 4256062101625196059}
+  longitudeText: {fileID: 4269534547005602400}
   displayCanvas: {fileID: 6153626487626158761}
   defaultScale: {x: 0, y: 0, z: 0}
-  name: 
-  description: 
-  image: {fileID: 0}
   nameText: {fileID: 1315896303323928393}
   descriptionText: {fileID: 4132406918789282663}
   img: {fileID: 4503268847260115608}
+  spriteRenderer: {fileID: 7516615815076937889}

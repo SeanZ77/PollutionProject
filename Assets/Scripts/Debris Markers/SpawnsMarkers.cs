@@ -28,8 +28,8 @@ public class SpawnsMarkers : MonoBehaviour
 
         if (m.TryGetComponent(out MarkerInfo mInfo))
         {
-            mInfo.latitude = l.y;
-            mInfo.longitude = l.x;
+            mInfo.latitudeText.text = l.y.ToString();
+            mInfo.longitudeText.text = l.x.ToString();
         }
 
         return m;

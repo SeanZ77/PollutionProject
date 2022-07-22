@@ -12,4 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 06cb71463afb7fb49a74bbbe28beeffa, type: 3}
   m_Name: Pointer Choice
   m_EditorClassIdentifier: 
-  debris: {fileID: 0}
+  debris: {fileID: 11400000, guid: a1fb2e79bef9bd5419341d0cc8285deb, type: 2}
+  defaultOption: {fileID: 11400000, guid: a1fb2e79bef9bd5419341d0cc8285deb, type: 2}

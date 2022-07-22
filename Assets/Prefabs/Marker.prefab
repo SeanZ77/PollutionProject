@@ -113,11 +113,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 891a28f297b84a341905b58d630a7bfa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  longitude: 0
-  latitude: 0
-  lat_text: {fileID: 986581600065264993}
-  long_text: {fileID: 1000349280408054042}
+  shrinkThreshold: 3
+  latitudeText: {fileID: 986581600065264993}
+  longitudeText: {fileID: 1000349280408054042}
   displayCanvas: {fileID: 7189867052321505747}
+  defaultScale: {x: 0, y: 0, z: 0}
 --- !u!1 &1834107301146752025
 GameObject:
   m_ObjectHideFlags: 0
