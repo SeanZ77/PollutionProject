@@ -8,7 +8,8 @@ public class CSVReader : SpawnsMarkers
     public int spawnAmount;
     public Debris[] types;
     public Debris placeholder;
-    public Dictionary<string, Debris> debrisLookup = new Dictionary<string, Debris>();
+    public Dictionary<string, Debris> debrisLookupFromDataName = new Dictionary<string, Debris>();
+    public Dictionary<string, Debris> debrisLookupFromPresentationName = new Dictionary<string, Debris>();
     public Dictionary<string, List<GameObject>> allDebris = new Dictionary<string, List<GameObject>>();
     public ToggleChoice choices;
     public DebrisInScene debrisInScene;
@@ -18,35 +19,52 @@ public class CSVReader : SpawnsMarkers
         //"subscribing" to an event
         DebrisChoice.OnChoiceChanged += RefreshDebris;
 
-        foreach (Debris d in types) {
-            debrisLookup.Add(d.dataName, d);
-            print(d.dataName);
+        //adding debris names and types
+        foreach (Debris d in types)
+        {
+            debrisLookupFromDataName.Add(d.dataName, d);
+            debrisLookupFromPresentationName.Add(d.name, d);
             allDebris.Add(d.name, new List<GameObject>());
         }
-
         allDebris.Add(placeholder.name, new List<GameObject>());
-    }
 
-    void Start()
-    {
-        string[] allLines = csvFile.text.Split("\n"[0]);
-        List<string> lines = new List<string>();
-        for (int i = 0; i < spawnAmount; i++) {
-            int index = Random.Range(1, spawnAmount+1);
-            lines.Add(allLines[index]);
+        //string[] allLines = csvFile.text.Split("\n"[0]);
+        //List<string> lines = new List<string>();
+
+        GameObject SpawnAmount = GameObject.Find("SpawnAmount");
+        spawnAmount = SpawnAmount.GetComponent<CSVSpawnAmount>().spawnAmount;
+
+        List<Dictionary<string, object>> data = CSVReaderTest.Read(csvFile);
+                
+        for (int i = 0; i < spawnAmount; i++)
+        {
+            //int index = Random.Range(1, spawnAmount + 1);
+            //lines.Add(allLines[index]);
+            // Script can't find debris object given debris data name
+            Debug.Log("Material: " + data[i]["material"].ToString());
+
+            SpawnMarker(
+                new Vector2(
+                    float.Parse(data[i]["latitude"].ToString()), 
+                    float.Parse(data[i]["longitude"].ToString())
+                ), 
+                getDebrisTypeFromDataName(data[i]["material"].ToString())
+            );
         }
 
-        foreach (string line in lines) {
-            string[] data = line.Split(',');
+        //foreach (string line in lines)
+        //{
+        //    string[] data = line.Split(',');
+        //
+        //    float latitude = float.Parse(data[9]);
+        //    float longitude = float.Parse(data[10]);
+        //    string material = data[2];
+        //
+        //    SpawnMarker(new Vector2(latitude, longitude), getDebrisTypeFromDataName(material));
+        //}
 
-            float latitude = float.Parse(data[9]);
-            float longitude = float.Parse(data[10]);
-            string material = data[2];
-
-            SpawnMarker(new Vector2(latitude, longitude), getDebrisType(material));
-        }
-
-        foreach (Debris debris in types) {
+        foreach (Debris debris in types)
+        {
             int length = allDebris[debris.name].Count;
             debrisInScene.data[debris] = length;
         }
@@ -78,7 +96,7 @@ public class CSVReader : SpawnsMarkers
     {
         foreach (KeyValuePair<string, List<GameObject>> objs in allDebris)
         {
-            print(objs.Key + " " + objs.Value.Count);
+            //print(objs.Key + " " + objs.Value.Count);
             foreach (GameObject o in objs.Value)
             {
                 o.SetActive(false);
@@ -94,13 +112,27 @@ public class CSVReader : SpawnsMarkers
         }
     }
 
-    Debris getDebrisType(string key) {
+    Debris getDebrisTypeFromDataName(string key) {
         Debris value;
-        if (debrisLookup.TryGetValue(key, out value))
+        if (debrisLookupFromDataName.TryGetValue(key, out value))
         {
             return value;
         }
         else {
+            print("Couldn't find the value for key: " + key);
+            return placeholder;
+        }
+    }
+
+    Debris getDebrisTypeFromPresentationName(string key)
+    {
+        Debris value;
+        if (debrisLookupFromPresentationName.TryGetValue(key, out value))
+        {
+            return value;
+        }
+        else
+        {
             print("Couldn't find the value for key: " + key);
             return placeholder;
         }

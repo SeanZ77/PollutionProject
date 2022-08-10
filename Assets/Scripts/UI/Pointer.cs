@@ -6,6 +6,7 @@ public class Pointer : SpawnsMarkers
 {
     public Debris[] debrisTypes;
     public PointerChoice choice;
+    public DebrisInScene debrisInScene;
     [SerializeField]
     private int choiceIndex = 0;
 
@@ -51,6 +52,8 @@ public class Pointer : SpawnsMarkers
             mInfo.img.sprite = choice.debris.image;
             mInfo.ChangeMarker(choice.debris.color, choice.debris.icon);
         }
+
+        debrisInScene.data[choice.debris]++;
     }
 
 }

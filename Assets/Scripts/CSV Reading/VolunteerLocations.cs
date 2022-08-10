@@ -9,25 +9,14 @@ public class VolunteerLocations : SpawnsMarkers
 
     void Start()
     {
-        //break down CSV file
-        string[] allLines = csvFile.text.Split("\n"[0]);
-        print(allLines.Length);
-        List<string> lines = new List<string>();
-        for (int i = 1; i < allLines.Length; i++)
-        {
-            lines.Add(allLines[i]);
-        }
-
+        List<Dictionary<string, object>> data = CSVReaderTest.Read(csvFile);
         //collect info from file
-        foreach (string line in lines)
+        for (var i = 0; i < data.Count; i++)
         {
-            print(line);
-            string[] data = line.Split(',');
-            print(data[3]);
-            print(data[4]);
-            float latitude = float.Parse(data[3]);
-            float longitude = float.Parse(data[4]);
-            SpawnMarker(new Vector2(latitude, longitude), new Volunteer(data[0], data[1], data[2]));
+            //print(data[i]["Name"].ToString());
+            float latitude = float.Parse(data[i]["Latitude"].ToString());
+            float longitude = float.Parse(data[i]["Longitude"].ToString());
+            markers.Add(SpawnMarker(new Vector2(latitude, longitude), new Volunteer(data[i]["Name"].ToString(), data[i]["Description"].ToString(), data[i]["Website"].ToString())));
         }
     }
 
@@ -37,8 +26,8 @@ public class VolunteerLocations : SpawnsMarkers
 
         if (marker.TryGetComponent(out VolunteerMarkerInfo mInfo))
         {
-            mInfo.latitudeText.text = l.y.ToString();
-            mInfo.longitudeText.text = l.x.ToString();
+            mInfo.latitudeText.text = l.x.ToString();
+            mInfo.longitudeText.text = l.y.ToString();
             mInfo.nameText.text = v.name;
             mInfo.descriptionText.text = v.description;
             mInfo.websiteText.text = v.website;
