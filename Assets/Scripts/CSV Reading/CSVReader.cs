@@ -28,9 +28,6 @@ public class CSVReader : SpawnsMarkers
         }
         allDebris.Add(placeholder.name, new List<GameObject>());
 
-        //string[] allLines = csvFile.text.Split("\n"[0]);
-        //List<string> lines = new List<string>();
-
         GameObject SpawnAmount = GameObject.Find("SpawnAmount");
         spawnAmount = SpawnAmount.GetComponent<CSVSpawnAmount>().spawnAmount;
 
@@ -38,9 +35,6 @@ public class CSVReader : SpawnsMarkers
                 
         for (int i = 0; i < spawnAmount; i++)
         {
-            //int index = Random.Range(1, spawnAmount + 1);
-            //lines.Add(allLines[index]);
-            // Script can't find debris object given debris data name
             Debug.Log("Material: " + data[i]["material"].ToString());
 
             SpawnMarker(
@@ -52,16 +46,6 @@ public class CSVReader : SpawnsMarkers
             );
         }
 
-        //foreach (string line in lines)
-        //{
-        //    string[] data = line.Split(',');
-        //
-        //    float latitude = float.Parse(data[9]);
-        //    float longitude = float.Parse(data[10]);
-        //    string material = data[2];
-        //
-        //    SpawnMarker(new Vector2(latitude, longitude), getDebrisTypeFromDataName(material));
-        //}
 
         foreach (Debris debris in types)
         {
@@ -96,6 +80,8 @@ public class CSVReader : SpawnsMarkers
     {
         foreach (KeyValuePair<string, List<GameObject>> objs in allDebris)
         {
+            debrisInScene.data[getDebrisTypeFromPresentationName(objs.Key)] = 0;
+
             //print(objs.Key + " " + objs.Value.Count);
             foreach (GameObject o in objs.Value)
             {
@@ -105,6 +91,9 @@ public class CSVReader : SpawnsMarkers
         List<GameObject> objects = new List<GameObject>();
         foreach (string name in choices.choice) {
             List<GameObject> o = allDebris[name];
+            Debug.Log(o.Count);
+            debrisInScene.data[getDebrisTypeFromPresentationName(name)] = o.Count;
+
             objects.AddRange(o);
         }
         foreach (GameObject o in objects) {

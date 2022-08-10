@@ -22,7 +22,6 @@ public class ToggleMenu : MonoBehaviour
             dC.debris = d;
             dC.text.text = d.name;
             dC.tc = tc;
-            dC.AddDebris(true);
             dC.count.text = debrisInScene.data[d].ToString();
         }
     }

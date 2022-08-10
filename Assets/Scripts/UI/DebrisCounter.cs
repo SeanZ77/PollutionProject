@@ -16,10 +16,6 @@ public class DebrisCounter : MonoBehaviour
 
     void Update()
     {
-        count = 0;
-        foreach (KeyValuePair<Debris, int> keyValue in debrisInScene.data) {
-            count += keyValue.Value;
-        }
-        counter.text = count.ToString();
+        counter.text = debrisInScene.getTotal().ToString();
     }
 }

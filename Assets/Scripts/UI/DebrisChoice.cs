@@ -14,6 +14,11 @@ public class DebrisChoice : MonoBehaviour
     public delegate void DebrisRefresh();
     public static event DebrisRefresh OnChoiceChanged;
 
+    private void Start()
+    {
+        tc.choice.Add(debris.name);
+    }
+
     public void AddDebris(bool selected) {
         if (selected)
         {

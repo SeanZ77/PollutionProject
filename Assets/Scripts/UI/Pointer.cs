@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class Pointer : SpawnsMarkers
 {
@@ -13,7 +14,7 @@ public class Pointer : SpawnsMarkers
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetMouseButtonDown(0)) {
+        if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             PlaceMarker();
         }
 
@@ -42,8 +43,8 @@ public class Pointer : SpawnsMarkers
       
     void PlaceMarker() {
         Vector3 mousePos = Input.mousePosition;
-        mousePos.z = Camera.main.nearClipPlane;
         Vector3 realPos = Camera.main.ScreenToWorldPoint(mousePos);
+        realPos.z = 0;
         GameObject placedMarker = Instantiate(marker, realPos, Quaternion.identity);
         
         if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo)) {
@@ -53,7 +54,15 @@ public class Pointer : SpawnsMarkers
             mInfo.ChangeMarker(choice.debris.color, choice.debris.icon);
         }
 
-        debrisInScene.data[choice.debris]++;
+        //debrisInScene.pointerData[choice.debris]++;
+        int temp = 0;
+        if (debrisInScene.pointerData.TryGetValue(choice.debris, out temp))
+        {
+            debrisInScene.pointerData[choice.debris]++;
+        }
+        else {
+            debrisInScene.pointerData.Add(choice.debris, 1);
+        }
     }
 
 }
