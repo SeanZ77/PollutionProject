@@ -6,18 +6,26 @@ using TMPro;
 public class CSVSpawnAmount : MonoBehaviour
 {
     public TMP_InputField inputText;
-    public int spawnAmount = 1000;
+    public int defaultSpawnAmount = 1000;
+    static public int spawnAmount;
 
     void Awake()
     {
-        DontDestroyOnLoad(transform.gameObject);
+        spawnAmount = defaultSpawnAmount;
     }
 
     void Update()
     {
         if (inputText.text != "")
         {
-            spawnAmount = int.Parse(inputText.text);
+            try
+            {
+                spawnAmount = int.Parse(inputText.text);
+            }
+            catch (System.ArgumentNullException)
+            {
+                spawnAmount = defaultSpawnAmount;
+            }
         }
     }
 }

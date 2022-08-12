@@ -28,8 +28,7 @@ public class CSVReader : SpawnsMarkers
         }
         allDebris.Add(placeholder.name, new List<GameObject>());
 
-        GameObject SpawnAmount = GameObject.Find("SpawnAmount");
-        spawnAmount = SpawnAmount.GetComponent<CSVSpawnAmount>().spawnAmount;
+        spawnAmount = CSVSpawnAmount.spawnAmount;
 
         List<Dictionary<string, object>> data = CSVReaderTest.Read(csvFile);
                 

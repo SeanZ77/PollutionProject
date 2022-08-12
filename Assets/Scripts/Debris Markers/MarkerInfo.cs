@@ -10,6 +10,7 @@ public class MarkerInfo : MonoBehaviour
     public TextMeshProUGUI longitudeText;
     public GameObject displayCanvas;
     public Vector3 defaultScale;
+    private bool canvasActive;
 
     protected virtual void Awake()
     {
@@ -31,13 +32,19 @@ public class MarkerInfo : MonoBehaviour
             transform.localScale = defaultScale;
     }
 
-    public virtual void OnMouseEnter()
+    //public virtual void OnMouseEnter()
+    //{
+    //    displayCanvas.SetActive(true);
+    //}
+
+    public virtual void OnMouseDown()
     {
-        displayCanvas.SetActive(true);
+        canvasActive = !canvasActive;
+        displayCanvas.SetActive(canvasActive);
     }
 
-    public void OnMouseExit()
-    {
-        displayCanvas.SetActive(false);
-    }
+    //public void OnMouseExit()
+    //{
+    //    displayCanvas.SetActive(false);
+    //}
 }

@@ -11,9 +11,14 @@ public class DebrisMarkerData : MarkerInfo
     public Image img;
     public SpriteRenderer spriteRenderer;
 
-    public override void OnMouseEnter()
+    //public override void OnMouseEnter()
+    //{
+    //    base.OnMouseEnter();
+    //}
+
+    public override void OnMouseDown()
     {
-        base.OnMouseEnter();
+        base.OnMouseDown();
     }
 
     public void ChangeMarker(Color color, Sprite sprite) {

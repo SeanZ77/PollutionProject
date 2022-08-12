@@ -20,7 +20,6 @@ public class Pointer : SpawnsMarkers
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            print("choice up");
             choiceIndex++;
             if (choiceIndex > debrisTypes.Length - 1)
             {
@@ -31,7 +30,6 @@ public class Pointer : SpawnsMarkers
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            print("choice down");
             choiceIndex--;
             if (choiceIndex < 0)
             {
