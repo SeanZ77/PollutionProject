@@ -20,25 +20,33 @@ public class Pointer : SpawnsMarkers
 
         if (Input.GetKeyDown(KeyCode.X))
         {
-            choiceIndex++;
-            if (choiceIndex > debrisTypes.Length - 1)
-            {
-                choiceIndex = 0;
-            }
-            choice.debris = debrisTypes[choiceIndex];
+            IncrementDebris();
         }
 
         if (Input.GetKeyDown(KeyCode.Z))
         {
-            choiceIndex--;
-            if (choiceIndex < 0)
-            {
-                choiceIndex = debrisTypes.Length - 1;
-            }
-            choice.debris = debrisTypes[choiceIndex];
+            DecrementDebris();
         }
     }
-      
+
+    public void IncrementDebris() {
+        choiceIndex++;
+        if (choiceIndex > debrisTypes.Length - 1)
+        {
+            choiceIndex = 0;
+        }
+        choice.debris = debrisTypes[choiceIndex];
+    }
+
+    public void DecrementDebris() {
+        choiceIndex--;
+        if (choiceIndex < 0)
+        {
+            choiceIndex = debrisTypes.Length - 1;
+        }
+        choice.debris = debrisTypes[choiceIndex];
+    }
+
     void PlaceMarker() {
         Vector3 mousePos = Input.mousePosition;
         Vector3 realPos = Camera.main.ScreenToWorldPoint(mousePos);
