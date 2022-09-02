@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.Networking;
 
 public class Pointer : SpawnsMarkers
 {
@@ -60,6 +61,8 @@ public class Pointer : SpawnsMarkers
             mInfo.ChangeMarker(choice.debris.color, choice.debris.icon);
         }
 
+    
+
         //debrisInScene.pointerData[choice.debris]++;
         int temp = 0;
         if (debrisInScene.pointerData.TryGetValue(choice.debris, out temp))
@@ -68,6 +71,27 @@ public class Pointer : SpawnsMarkers
         }
         else {
             debrisInScene.pointerData.Add(choice.debris, 1);
+        }
+    }
+
+    public void GetPrediction(float latitude, float longitude)
+    {
+        StartCoroutine(SendGetRequest("https://oceanpollutionflask.bigphan.repl.co/" + latitude + "/" + longitude));
+    }
+
+    private static IEnumerator SendGetRequest(string url)
+    {
+
+        using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
+        {
+            yield return webRequest.SendWebRequest();
+            if (webRequest.result == UnityWebRequest.Result.Success)
+            {
+                print(webRequest.downloadHandler.text);
+                RequestInfo ri = RequestInfo.createFromJson(webRequest.downloadHandler.text);
+                print(ri.material);
+                print(ri.quantity);
+            }
         }
     }
 
