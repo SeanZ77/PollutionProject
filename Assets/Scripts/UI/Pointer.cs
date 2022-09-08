@@ -12,14 +12,6 @@ public class Pointer : SpawnsMarkers
     public DebrisInScene debrisInScene;
     [SerializeField]
 
-    void Awake()
-    {
-        foreach(var d in debrisDictionary.dictionary)
-        {
-            print(d.Value.dataName);
-        }
-    }
-
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
@@ -81,9 +73,9 @@ public class Pointer : SpawnsMarkers
         y += mapSize/2;
 
         float mercn = ((mapSize/2) - y) * (2 * Mathf.PI) / mapSize;
-        print("XYLL mercn: " + mercn);
+        //print("XYLL mercn: " + mercn);
         float latrad = 2 * (Mathf.Atan(Mathf.Exp(mercn)) - (Mathf.PI / 4));
-        print("XYLL latrad: " + latrad);
+        //print("XYLL latrad: " + latrad);
         float latitude = (latrad * 180) / Mathf.PI;
 
         float longitude = (x / (mapSize / 360)) - 180;
