@@ -34,8 +34,6 @@ public class CSVReader : SpawnsMarkers
                 
         for (int i = 0; i < spawnAmount; i++)
         {
-            Debug.Log("Material: " + data[i]["material"].ToString());
-
             SpawnMarker(
                 new Vector2(
                     float.Parse(data[i]["latitude"].ToString()), 
@@ -107,7 +105,6 @@ public class CSVReader : SpawnsMarkers
             return value;
         }
         else {
-            print("Couldn't find the value for key: " + key);
             return placeholder;
         }
     }

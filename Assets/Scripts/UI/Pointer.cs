@@ -6,80 +6,60 @@ using UnityEngine.Networking;
 
 public class Pointer : SpawnsMarkers
 {
-    public Debris[] debrisTypes;
-    public PointerChoice choice;
+    public DebrisDictionary debrisDictionary;
+    RequestInfo requestInfo;
+    Debris AIDebris;
     public DebrisInScene debrisInScene;
     [SerializeField]
-    private int choiceIndex = 0;
 
-    // Update is called once per frame
+    void Awake()
+    {
+        foreach(var d in debrisDictionary.dictionary)
+        {
+            print(d.Value.dataName);
+        }
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
-            PlaceMarker();
-        }
-
-        if (Input.GetKeyDown(KeyCode.X))
-        {
-            IncrementDebris();
-        }
-
-        if (Input.GetKeyDown(KeyCode.Z))
-        {
-            DecrementDebris();
+            StartCoroutine(PlaceMarker());
         }
     }
 
-    public void IncrementDebris() {
-        choiceIndex++;
-        if (choiceIndex > debrisTypes.Length - 1)
-        {
-            choiceIndex = 0;
-        }
-        choice.debris = debrisTypes[choiceIndex];
-    }
-
-    public void DecrementDebris() {
-        choiceIndex--;
-        if (choiceIndex < 0)
-        {
-            choiceIndex = debrisTypes.Length - 1;
-        }
-        choice.debris = debrisTypes[choiceIndex];
-    }
-
-    void PlaceMarker() {
+    public IEnumerator PlaceMarker()
+    {
         Vector3 mousePos = Input.mousePosition;
         Vector3 realPos = Camera.main.ScreenToWorldPoint(mousePos);
         realPos.z = 0;
         GameObject placedMarker = Instantiate(marker, realPos, Quaternion.identity);
-        
-        if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo)) {
-            mInfo.name = choice.debris.name;
-            mInfo.descriptionText.text = choice.debris.description;
-            mInfo.img.sprite = choice.debris.image;
-            mInfo.ChangeMarker(choice.debris.color, choice.debris.icon);
-        }
+        Vector2 realWorldPos = XY2LongLat(realPos.x, realPos.y);
 
-    
+        yield return StartCoroutine(SendGetRequest("https://oceanpollutionflask.bigphan.repl.co/" + realWorldPos.x + "/" + realWorldPos.y));
+        AIDebris = debrisDictionary.FindDebrisFromDataName(requestInfo.material);
+        print(AIDebris);
+
+        if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo)) {
+            mInfo.name = AIDebris.name;
+            mInfo.descriptionText.text = AIDebris.description;
+            mInfo.img.sprite = AIDebris.image;
+            mInfo.ChangeMarker(AIDebris.color, AIDebris.icon);
+            mInfo.latitudeText.text = realWorldPos.x.ToString();
+            mInfo.longitudeText.text = realWorldPos.y.ToString();
+        }
 
         //debrisInScene.pointerData[choice.debris]++;
         int temp = 0;
-        if (debrisInScene.pointerData.TryGetValue(choice.debris, out temp))
+        if (debrisInScene.pointerData.TryGetValue(AIDebris, out temp))
         {
-            debrisInScene.pointerData[choice.debris]++;
+            debrisInScene.pointerData[AIDebris]++;
         }
         else {
-            debrisInScene.pointerData.Add(choice.debris, 1);
+            debrisInScene.pointerData.Add(AIDebris, 1);
         }
     }
 
-    public void GetPrediction(float latitude, float longitude)
-    {
-        StartCoroutine(SendGetRequest("https://oceanpollutionflask.bigphan.repl.co/" + latitude + "/" + longitude));
-    }
-
-    private static IEnumerator SendGetRequest(string url)
+    private IEnumerator SendGetRequest(string url)
     {
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
@@ -87,12 +67,27 @@ public class Pointer : SpawnsMarkers
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
-                print(webRequest.downloadHandler.text);
-                RequestInfo ri = RequestInfo.createFromJson(webRequest.downloadHandler.text);
-                print(ri.material);
-                print(ri.quantity);
+                requestInfo = RequestInfo.createFromJson(webRequest.downloadHandler.text);
+                print(requestInfo.material);
+                print(requestInfo.quantity);
             }
         }
     }
 
+    public Vector2 XY2LongLat(float x, float y)
+    {
+        float mapSize = map.localScale.x;
+        x += mapSize/2;
+        y += mapSize/2;
+
+        float mercn = ((mapSize/2) - y) * (2 * Mathf.PI) / mapSize;
+        print("XYLL mercn: " + mercn);
+        float latrad = 2 * (Mathf.Atan(Mathf.Exp(mercn)) - (Mathf.PI / 4));
+        print("XYLL latrad: " + latrad);
+        float latitude = (latrad * 180) / Mathf.PI;
+
+        float longitude = (x / (mapSize / 360)) - 180;
+
+        return new Vector2(-latitude, longitude);
+    }
 }
