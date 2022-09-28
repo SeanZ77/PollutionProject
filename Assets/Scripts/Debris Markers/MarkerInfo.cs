@@ -39,6 +39,7 @@ public class MarkerInfo : MonoBehaviour
 
     public virtual void OnMouseDown()
     {
+        if (Pointer.placingDebrisMarkers) return;
         canvasActive = !canvasActive;
         displayCanvas.SetActive(canvasActive);
     }

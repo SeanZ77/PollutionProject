@@ -39,7 +39,8 @@ public class CSVReader : SpawnsMarkers
                     float.Parse(data[i]["latitude"].ToString()), 
                     float.Parse(data[i]["longitude"].ToString())
                 ), 
-                getDebrisTypeFromDataName(data[i]["material"].ToString())
+                getDebrisTypeFromDataName(data[i]["material"].ToString()),
+                int.Parse(data[i]["quantity"].ToString())
             );
         }
 
@@ -54,7 +55,7 @@ public class CSVReader : SpawnsMarkers
         debrisInScene.data[placeholder] = amountOfPlaceholders;
     }
 
-    public GameObject SpawnMarker(Vector2 l, Debris d)
+    public GameObject SpawnMarker(Vector2 l, Debris d, int quantity)
     {
         GameObject m = Instantiate(marker, LongLat2XY(l.y, -l.x), Quaternion.identity);
 
@@ -67,6 +68,7 @@ public class CSVReader : SpawnsMarkers
             mInfo.descriptionText.text = d.description;
             mInfo.img.sprite = d.image;
             mInfo.ChangeMarker(d.color, d.icon);
+            mInfo.quantityText.text = "Quantity: " + quantity.ToString();
             allDebris[d.name].Add(m);
         }
 

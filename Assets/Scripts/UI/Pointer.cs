@@ -6,6 +6,7 @@ using UnityEngine.Networking;
 
 public class Pointer : SpawnsMarkers
 {
+    public static bool placingDebrisMarkers = false;
     public DebrisDictionary debrisDictionary;
     RequestInfo requestInfo;
     Debris AIDebris;
@@ -17,6 +18,16 @@ public class Pointer : SpawnsMarkers
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject()) {
             StartCoroutine(PlaceMarker());
         }
+    }
+
+    private void OnEnable()
+    {
+        placingDebrisMarkers = true;
+    }
+
+    private void OnDisable()
+    {
+        placingDebrisMarkers = false;
     }
 
     public IEnumerator PlaceMarker()
@@ -38,6 +49,8 @@ public class Pointer : SpawnsMarkers
             mInfo.ChangeMarker(AIDebris.color, AIDebris.icon);
             mInfo.latitudeText.text = realWorldPos.x.ToString();
             mInfo.longitudeText.text = realWorldPos.y.ToString();
+            mInfo.nameText.text = AIDebris.name;
+            mInfo.quantityText.text = "Quantity: " + requestInfo.quantity.ToString();
         }
 
         //debrisInScene.pointerData[choice.debris]++;
@@ -56,6 +69,10 @@ public class Pointer : SpawnsMarkers
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
+            webRequest.SetRequestHeader("Access-Control-Allow-Credentials", "true");
+            webRequest.SetRequestHeader("Access-Control-Allow-Headers", "Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time");
+            webRequest.SetRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
+            webRequest.SetRequestHeader("Access-Control-Allow-Origin", "*");
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.Success)
             {

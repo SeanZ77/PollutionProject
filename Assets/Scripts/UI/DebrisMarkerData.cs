@@ -8,6 +8,7 @@ public class DebrisMarkerData : MarkerInfo
 {
     public TextMeshProUGUI nameText;
     public TextMeshProUGUI descriptionText;
+    public TextMeshProUGUI quantityText;
     public Image img;
     public SpriteRenderer spriteRenderer;
 
