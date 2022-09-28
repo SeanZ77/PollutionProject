@@ -22,7 +22,7 @@ public class SpawnsMarkers : MonoBehaviour
         return new Vector2(x, y);
     }
 
-    public GameObject SpawnMarker(Vector2 l)
+    virtual public GameObject SpawnMarker(Vector2 l)
     {
         GameObject m = Instantiate(marker, LongLat2XY(l.y, -l.x), Quaternion.identity);
 

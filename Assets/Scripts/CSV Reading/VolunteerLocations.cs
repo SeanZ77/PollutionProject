@@ -13,24 +13,27 @@ public class VolunteerLocations : SpawnsMarkers
         //collect info from file
         for (var i = 0; i < data.Count; i++)
         {
-            //print(data[i]["Name"].ToString());
+            print(data[i]["Name"].ToString());
             float latitude = float.Parse(data[i]["Latitude"].ToString());
             float longitude = float.Parse(data[i]["Longitude"].ToString());
-            markers.Add(SpawnMarker(new Vector2(latitude, longitude), new Volunteer(data[i]["Name"].ToString(), data[i]["Description"].ToString(), data[i]["Website"].ToString())));
+            print(latitude.ToString() + " " + longitude.ToString());
+            GameObject m = SpawnVolunteerMarker(new Vector2(latitude, longitude), new Volunteer(data[i]["Name"].ToString(), data[i]["Description"].ToString(), data[i]["Website"].ToString()));
+            markers.Add(m);   
         }
     }
 
-    public GameObject SpawnMarker(Vector2 l, Volunteer v)
+    public GameObject SpawnVolunteerMarker(Vector2 l, Volunteer v)
     {
         GameObject m = Instantiate(marker, LongLat2XY(l.y, -l.x), Quaternion.identity);
 
-        if (marker.TryGetComponent(out VolunteerMarkerInfo mInfo))
+        if (m.TryGetComponent(out VolunteerMarkerInfo mInfo))
         {
             mInfo.latitudeText.text = l.x.ToString();
             mInfo.longitudeText.text = l.y.ToString();
             mInfo.nameText.text = v.name;
             mInfo.descriptionText.text = v.description;
             mInfo.websiteText.text = v.website;
+            print(v.name + " " + m.transform.position);
         }
 
         return m;
