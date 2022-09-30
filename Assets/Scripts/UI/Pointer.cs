@@ -69,10 +69,6 @@ public class Pointer : SpawnsMarkers
 
         using (UnityWebRequest webRequest = UnityWebRequest.Get(url))
         {
-            webRequest.SetRequestHeader("Access-Control-Allow-Credentials", "true");
-            webRequest.SetRequestHeader("Access-Control-Allow-Headers", "Accept, X-Access-Token, X-Application-Name, X-Request-Sent-Time");
-            webRequest.SetRequestHeader("Access-Control-Allow-Methods", "GET, POST, OPTIONS");
-            webRequest.SetRequestHeader("Access-Control-Allow-Origin", "*");
             yield return webRequest.SendWebRequest();
             if (webRequest.result == UnityWebRequest.Result.Success)
             {
