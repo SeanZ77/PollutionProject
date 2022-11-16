@@ -14,4 +14,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Scene.unity
     guid: 9029f1efc77d94743b5727248e1915ef
+  - enabled: 1
+    path: Assets/Scenes/Microplastic.unity
+    guid: 8e79d5e67b97ad74aa0b5f5f70d47beb
   m_configObjects: {}
