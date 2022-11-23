@@ -12,7 +12,9 @@ public class MicroplasticPlacer : MonoBehaviour
     public int spawnAmount;
     public GameObject prefab;
     public Dictionary<Shape, Sprite> spriteDictionary = new Dictionary<Shape, Sprite>();
+    public Dictionary<Shape, Color> colorDictionary = new Dictionary<Shape, Color>();
     public Sprite sphere, fiber, film;
+    public Color sphereColor, fiberColor, filmColor;
     public float maxHeight, maxWidth;
     public Dictionary<Shape, List<GameObject>> plasticDictionary = new Dictionary<Shape, List<GameObject>>();
     public bool showSpheres = true, showFibers = true, showFilms = true;
@@ -22,6 +24,9 @@ public class MicroplasticPlacer : MonoBehaviour
         spriteDictionary.Add(Shape.sphere, sphere);
         spriteDictionary.Add(Shape.fiber, fiber);
         spriteDictionary.Add(Shape.film, film);
+        colorDictionary.Add(Shape.sphere, sphereColor);
+        colorDictionary.Add(Shape.fiber, fiberColor);
+        colorDictionary.Add(Shape.film, filmColor);
         plasticDictionary.Add(Shape.sphere, new List<GameObject>());
         plasticDictionary.Add(Shape.fiber, new List<GameObject>());
         plasticDictionary.Add(Shape.film, new List<GameObject>());
@@ -31,7 +36,7 @@ public class MicroplasticPlacer : MonoBehaviour
         for (int i = 0; i < spawnAmount; i++)
         {
             float verticalVelocity = float.Parse(data[i]["0"].ToString());
-            float verticalPosition = float.Parse(data[i]["1"].ToString());
+            float verticalPosition = 1000 - float.Parse(data[i]["1"].ToString());
             Shape shape = stringToShape(data[i]["2"].ToString());
             float x = i * maxWidth / spawnAmount;
             float y = verticalPosition / 1000 * maxHeight;
@@ -59,6 +64,7 @@ public class MicroplasticPlacer : MonoBehaviour
         GameObject gameObject = Instantiate(prefab, position, Quaternion.identity);
         SpriteRenderer spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = spriteDictionary[shape];
+        spriteRenderer.color = colorDictionary[shape];
         PlasticDisplay plasticDisplay = gameObject.GetComponent<PlasticDisplay>();
         plasticDisplay.SetValues(verticalVelocity.ToString(), verticalPosition.ToString(), shape.ToString());
         return gameObject; 
