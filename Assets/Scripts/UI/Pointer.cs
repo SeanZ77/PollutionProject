@@ -39,28 +39,33 @@ public class Pointer : SpawnsMarkers
         Vector2 realWorldPos = XY2LongLat(realPos.x, realPos.y);
 
         yield return StartCoroutine(SendGetRequest("https://oceanpollutionflask.bigphan.repl.co/" + realWorldPos.x + "/" + realWorldPos.y));
-        AIDebris = debrisDictionary.FindDebrisFromDataName(requestInfo.material);
-        print(AIDebris);
 
-        if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo)) {
-            mInfo.name = AIDebris.name;
-            mInfo.descriptionText.text = AIDebris.description;
-            mInfo.img.sprite = AIDebris.image;
-            mInfo.ChangeMarker(AIDebris.color, AIDebris.icon);
-            mInfo.latitudeText.text = realWorldPos.x.ToString();
-            mInfo.longitudeText.text = realWorldPos.y.ToString();
-            mInfo.nameText.text = AIDebris.name;
-            mInfo.quantityText.text = "Quantity: " + requestInfo.quantity.ToString();
-        }
+        if (requestInfo != null) {
+            AIDebris = debrisDictionary.FindDebrisFromDataName(requestInfo.material);
+            print(AIDebris);
 
-        //debrisInScene.pointerData[choice.debris]++;
-        int temp = 0;
-        if (debrisInScene.pointerData.TryGetValue(AIDebris, out temp))
-        {
-            debrisInScene.pointerData[AIDebris]++;
-        }
-        else {
-            debrisInScene.pointerData.Add(AIDebris, 1);
+            if (placedMarker.TryGetComponent(out DebrisMarkerData mInfo))
+            {
+                mInfo.name = AIDebris.name;
+                mInfo.descriptionText.text = AIDebris.description;
+                mInfo.img.sprite = AIDebris.image;
+                mInfo.ChangeMarker(AIDebris.color, AIDebris.icon);
+                mInfo.latitudeText.text = realWorldPos.x.ToString();
+                mInfo.longitudeText.text = realWorldPos.y.ToString();
+                mInfo.nameText.text = AIDebris.name;
+                mInfo.quantityText.text = "Quantity: " + requestInfo.quantity.ToString();
+            }
+
+            //debrisInScene.pointerData[choice.debris]++;
+            int temp = 0;
+            if (debrisInScene.pointerData.TryGetValue(AIDebris, out temp))
+            {
+                debrisInScene.pointerData[AIDebris]++;
+            }
+            else
+            {
+                debrisInScene.pointerData.Add(AIDebris, 1);
+            }
         }
     }
 
