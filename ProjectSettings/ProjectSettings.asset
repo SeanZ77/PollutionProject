@@ -157,11 +157,12 @@ PlayerSettings:
   applicationIdentifier:
     Android: com.SeanZeng.MarinePollutionProject
     Standalone: com.Sean-Zeng.Marine-Pollution-Project
+    iPhone: sean.zeng
   buildNumber:
     Standalone: 0
     iPhone: 0
     tvOS: 0
-  overrideDefaultApplicationIdentifier: 0
+  overrideDefaultApplicationIdentifier: 1
   AndroidBundleVersionCode: 2
   AndroidMinSdkVersion: 31
   AndroidTargetSdkVersion: 0
@@ -226,7 +227,7 @@ PlayerSettings:
   metalAPIValidation: 1
   iOSRenderExtraFrameOnPause: 0
   iosCopyPluginsCodeInsteadOfSymlink: 0
-  appleDeveloperTeamID: 
+  appleDeveloperTeamID: ' 63R7WU94A2'
   iOSManualSigningProvisioningProfileID: 
   tvOSManualSigningProvisioningProfileID: 
   iOSManualSigningProvisioningProfileType: 0
