@@ -1,0 +1,44 @@
+<linker>
+	<assembly fullname="Assembly-CSharp" ignoreIfMissing="1">
+		<type fullname="DebrisChoice">
+			<method name="AddDebris"/>
+		</type>
+		<type fullname="Exiter">
+			<method name="ExitGame"/>
+		</type>
+		<type fullname="MicroplasticPlacer">
+			<method name="toggleFiber"/>
+			<method name="toggleFilm"/>
+			<method name="toggleSphere"/>
+		</type>
+		<type fullname="SceneJumper">
+			<method name="JumpScene"/>
+			<method name="JumpScene"/>
+			<method name="JumpScene"/>
+			<method name="JumpScene"/>
+			<method name="JumpScene"/>
+			<method name="JumpScene"/>
+			<method name="JumpSceneWithLoadScreen"/>
+			<method name="JumpSceneWithLoadScreen"/>
+		</type>
+		<type fullname="VolunteerLocations">
+			<method name="ToggleLocations"/>
+		</type>
+	</assembly>
+	<assembly fullname="UnityEngine.CoreModule" ignoreIfMissing="1">
+		<type fullname="UnityEngine.GameObject">
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+			<method name="SetActive"/>
+		</type>
+	</assembly>
+</linker>
